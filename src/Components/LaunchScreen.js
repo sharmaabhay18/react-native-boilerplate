@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import {
   Text, View, Button, Image
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import { connect } from 'react-redux';
 import { API_CALL_REQUEST } from '../Utility/Types';
 
 class LaunchScreen extends Component {
+  componentDidMount() {
+    SplashScreen.hide();
+  }
+
   render() {
     const { dog, onRequestDog } = this.props;
     console.log('props', this.props);

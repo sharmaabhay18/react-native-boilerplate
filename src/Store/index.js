@@ -11,14 +11,14 @@ const sagaMiddleware = createSagaMiddleware();
 // redux persist config params
 const persistConfig = {
   key: 'root',
-  AsyncStorage
+  storage: AsyncStorage
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
+export const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
+
 // watches which actions is dispatched to store and executes accordingly
 sagaMiddleware.run(rootSaga);
-
-export const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
 
 export const persistor = persistStore(store);
